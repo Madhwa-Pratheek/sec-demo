@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IRCTC - Book Your Tickets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .header {
+            background-color: #f1f3f6;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(16, 15, 15, 0.1);
+        }
+
+        .nav-link {
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .nav-link-active {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .irctc-gradient {
+            background: linear-gradient(to right, #2563eb, #1d4ed8);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="header sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Indian_Railways_logo.svg/1200px-Indian_Railways_logo.svg.png" alt="Indian Railways Logo" class="h-10">
+                <span class="text-xl md:text-2xl font-bold text-gray-800">IRCTC</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-gray-600">
+                <a href="#" class="nav-link nav-link-active">HOME</a>
+                <a href="#" class="nav-link">TRAINS</a>
+                <a href="#" class="nav-link">BUSES</a>
+                <a href="#" class="nav-link">FLIGHTS</a>
+                <a href="#" class="nav-link">HOTELS</a>
+                <a href="#" class="nav-link">HOLIDAYS</a>
+            </nav>
+            <div class="hidden md:flex space-x-3">
+                <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition">LOGIN</button>
+                <button class="irctc-gradient text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">SIGN UP</button>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 md:py-16">
+        <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center md:text-left">Book Your Tickets</h1>
+            
+            <!-- Ticket Booking Form -->
+            <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- From Station -->
+                <div class="form-group">
+                    <label for="from" class="block text-sm font-medium text-gray-700 mb-1">FROM</label>
+                    <input type="text" id="from" placeholder="e.g., New Delhi" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- To Station -->
+                <div class="form-group">
+                    <label for="to" class="block text-sm font-medium text-gray-700 mb-1">TO</label>
+                    <input type="text" id="to" placeholder="e.g., Mumbai" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Journey Date -->
+                <div class="form-group">
+                    <label for="date" class="block text-sm font-medium text-gray-700 mb-1">JOURNEY DATE</label>
+                    <input type="date" id="date" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- All Classes -->
+                <div class="form-group">
+                    <label for="class" class="block text-sm font-medium text-gray-700 mb-1">ALL CLASSES</label>
+                    <select id="class" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <option>All Classes</option>
+                        <option>First AC (1A)</option>
+                        <option>Second AC (2A)</option>
+                        <option>Third AC (3A)</option>
+                        <option>Sleeper (SL)</option>
+                        <option>Second Seating (2S)</option>
+                    </select>
+                </div>
+                <!-- Search Button -->
+                <div class="md:col-span-2 lg:col-span-4 mt-4">
+                    <button type="submit" class="w-full irctc-gradient text-white py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition transform hover:scale-105">
+                        Search Trains
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Utility Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition hover:scale-105 duration-300 cursor-pointer">
+                <div class="irctc-gradient rounded-full p-3 mb-4 text-white">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 7a1 1 0 112 0v5a1 1 0 11-2 0V7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800">PNR Status</h3>
+                <p class="text-sm text-gray-600 mt-1">Check the status of your ticket.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition hover:scale-105 duration-300 cursor-pointer">
+                <div class="irctc-gradient rounded-full p-3 mb-4 text-white">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V6a1 1 0 112 0v5a1 1 0 11-2 0zM10 16a1 1 0 100-2 1 1 0 000 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800">Train Schedule</h3>
+                <p class="text-sm text-gray-600 mt-1">View live schedule of a train.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition hover:scale-105 duration-300 cursor-pointer">
+                <div class="irctc-gradient rounded-full p-3 mb-4 text-white">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800">Cancel Ticket</h3>
+                <p class="text-sm text-gray-600 mt-1">Cancel your booked ticket.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition hover:scale-105 duration-300 cursor-pointer">
+                <div class="irctc-gradient rounded-full p-3 mb-4 text-white">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 11a1 1 0 112 0v5a1 1 0 11-2 0v-5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800">Refund Status</h3>
+                <p class="text-sm text-gray-600 mt-1">Check refund status.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 IRCTC. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
