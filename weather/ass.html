@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+   
+</head>
+<body class="bg-gray-100">
+
+    <div class="container flex flex-col items-center">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-6">Joke Generator</h1>
+        <div id="joke-container" class="w-full min-h-[150px] p-6 mb-6 bg-white border border-gray-200 rounded-xl shadow-lg flex flex-col justify-center items-center text-center transition-all duration-300 ease-in-out transform">
+            <div id="loading-message" class="text-gray-500 font-medium text-lg hidden">
+                Fetching a joke...
+            </div>
+            <p id="joke-setup" class="text-xl font-semibold text-gray-700 leading-relaxed mb-4 hidden"></p>
+            <p id="joke-punchline" class="text-2xl font-bold text-gray-900 hidden"></p>
+            <p id="error-message" class="text-red-500 font-medium text-lg hidden">Couldn’t fetch a joke, try again!</p>
+        </div>
+        <button id="joke-button" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-transform duration-200 ease-in-out shadow-lg hover:scale-105">
+            Get a Joke
+        </button>
+
+    </div>
+
+    <script>
+       src="script1.js"
+    </script>
+
+</body>
+</html>

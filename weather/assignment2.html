@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <!-- Use Tailwind CSS for a modern, responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container flex flex-col items-center">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-6">Joke Generator</h1>
+        
+        <!-- Joke display container -->
+        <div id="joke-container" class="w-full min-h-[150px] p-6 mb-6 bg-white border border-gray-200 rounded-xl shadow-lg flex flex-col justify-center items-center text-center transition-all duration-300 ease-in-out transform">
+            <div id="loading-message" class="text-gray-500 font-medium text-lg hidden">
+                Fetching a joke...
+            </div>
+            <p id="joke-setup" class="text-xl font-semibold text-gray-700 leading-relaxed mb-4 hidden"></p>
+            <p id="joke-punchline" class="text-2xl font-bold text-gray-900 hidden"></p>
+            <p id="error-message" class="text-red-500 font-medium text-lg hidden">Couldn’t fetch a joke, try again!</p>
+        </div>
+
+        <!-- Button to fetch the joke -->
+        <button id="joke-button" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-transform duration-200 ease-in-out shadow-lg hover:scale-105">
+            Get a Joke
+        </button>
+    </div>
+
+    <script>
+        // DOM element references
+        const jokeButton = document.getElementById('joke-button');
+        const jokeContainer = document.getElementById('joke-container');
+        const setupText = document.getElementById('joke-setup');
+        const punchlineText = document.getElementById('joke-punchline');
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('error-message');
+
+        /**
+         * Fetches a random joke from the API using an async function.
+         * The function handles the API call and error handling.
+         */
+        async function getJoke() {
+            // Hide previous joke and error messages, and show loading indicator
+            setupText.classList.add('hidden');
+            punchlineText.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            loadingMessage.classList.remove('hidden');
+
+            try {
+                // Fetch data from the API
+                const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+                
+                // Check if the response is successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Parse the JSON response
+                const jokeData = await response.json();
+                
+                // Display the joke on the page
+                displayJoke(jokeData);
+
+            } catch (error) {
+                console.error("Fetch error: ", error);
+                loadingMessage.classList.add('hidden');
+                errorMessage.classList.remove('hidden');
+            }
+        }
+
+        /**
+         * Updates the DOM with the joke's setup and punchline.
+         * @param {Object} joke - The joke data object containing 'setup' and 'punchline' properties.
+         */
+        function displayJoke(joke) {
+            // Hide loading message and any error messages
+            loadingMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            // Update the text content of the setup and punchline elements
+            setupText.textContent = joke.setup;
+            punchlineText.textContent = joke.punchline;
+
+            // Show the joke elements by removing the 'hidden' class
+            setupText.classList.remove('hidden');
+            punchlineText.classList.remove('hidden');
+            
+            // Update the button text for the next joke
+            jokeButton.textContent = 'Next Joke';
+        }
+
+        // Add an event listener to the button to trigger the getJoke function
+        jokeButton.addEventListener('click', getJoke);
+        
+    </script>
+
+</body>
+</html>
