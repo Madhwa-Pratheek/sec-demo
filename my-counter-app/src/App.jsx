@@ -19,7 +19,8 @@ function App() {
       <button onClick={() => setCount(count+1)}>increment</button>
        <button onClick={() => setCount(count-1)}>decrement</button>
        <button onClick={() => setCount(0)}>reset</button>
-      </div>\
+       <p>Hi this is pratheek with age 20</p>
+      </div>
       </>)
 }
 
